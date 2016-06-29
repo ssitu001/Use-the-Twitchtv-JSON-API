@@ -18,6 +18,7 @@ $(function () {
   //console.log("data2",data2);  
        var isOnline = isStreaming(data2);
        displayUsers(data, isOnline);
+       events();
        //console.log(isOnline);
      });
   }); 
@@ -39,9 +40,6 @@ $(function () {
     var displayName = data.display_name;
     var url = data.url;
     var game = data.game;
-    //offline or status
-    //var offline = 
-    //console.log('status', status)
     var userStatus;
     var currentStatus;
     
@@ -53,7 +51,7 @@ $(function () {
       currentStatus = "online";
     } else {
       userStatus = 'No longer active';
-      currentStatus = '';
+      currentStatus = "offline";
     }
     
     if (!displayName) {
@@ -69,11 +67,26 @@ $(function () {
     currentStatus === "online" ? $('.results').prepend(html) : $('.results').append(html);
     
   }
+
 });
 
+  function events() {
+    $('#online').on('click', function() {
+      $(this).attr('id', 'onlineColor');
+      $('.offline').hide();
+
+    });
+
+    $('#all').on('click', function() {
+      $('#online').attr('id', 'online'); 
+      $('.offline').show();  
+  });
+
+  }
+
+
 //ideas and things to add
-  //add game x
+
 // 1)make toggle button work
-// 2)username in green when onlinex
 // 3)add footer
 // 4)add default image to inactive users
