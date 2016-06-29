@@ -1,2 +1,3 @@
 # Use-the-Twitchtv-JSON-API
-project for freecodecamp 
+small project for freecodecamp by Simon Situ
+HTML CSS JS jQuery
