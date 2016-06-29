@@ -1,14 +1,29 @@
+/*$background: #34495e;
+$font: #bdc3c7;*/
 
+html {
+   height: 100%;  
+}
 
-html body, #online, #all, #onlineColor  {
+html body, .footer, #online, #all, #onlineColor  {
   background: #34495e;
   color: #bdc3c7;
   font-family: 'Open Sans', sans-serif;
-  border: none;
+  border: none; 
+
+}
+
+.footer {
+  position: fixed;
+  height: 4%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
 }
 
 div.online, .interface, .eachResult, .logo, #online, #onlineColor, #all {
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
 }
 
 span.displayName {
@@ -32,6 +47,7 @@ div.online, #onlineColor {
   background: #34495e;
   width: 70%;
   margin: 0 auto;
+  margin-bottom: 10%;
 }
 
 .eachResult{
@@ -41,7 +57,7 @@ div.online, #onlineColor {
 }
 
 .status {
-  margin: 5px 5px 5px 5px;
+  margin: 5px;
 }
 
 .logo {
@@ -52,7 +68,3 @@ div.online, #onlineColor {
   font-size: 0.25em;
 }
 
-/* #online, #all {
-  border: none;
-  background: #2980b9;
-} */

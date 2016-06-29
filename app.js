@@ -18,8 +18,8 @@ $(function () {
   //console.log("data2",data2);  
        var isOnline = isStreaming(data2);
        displayUsers(data, isOnline);
+       hasLogo(data);
        events();
-       //console.log(isOnline);
      });
   }); 
  } 
@@ -33,15 +33,24 @@ $(function () {
     return isOn;
   }
   
+  //extract user logo, if no logo use default
+  function hasLogo(data) {
+    var defaultLogo = "http://image.flaticon.com/icons/svg/148/148766.svg";
+    var userLogo;
+    return data.logo ? userLogo = data.logo : userLogo = defaultLogo;
+  }
+
+
 
   
   function displayUsers(data, status) {
-    var logo = data.logo;
+    var logo = hasLogo(data);
     var displayName = data.display_name;
     var url = data.url;
     var game = data.game;
     var userStatus;
     var currentStatus;
+    var html;
     
     if (!status && displayName) {
       userStatus = "Currently Offline";
@@ -59,11 +68,11 @@ $(function () {
       userStatus = data.message.split(" ").slice(1).join(" ");
     }
     
-    var html = '<div class="'+currentStatus+'"><div class="eachResult ' + currentStatus +'"><img src="'+
+    html = '<div class="'+currentStatus+'"><div class="eachResult ' + currentStatus +'"><img src="'+
         logo +'" + "height="35" width="35" class="logo""><a href="'+url+'" target="_blank"><span class="displayName">'+ 
         displayName +'</span></a><div class="status">'+
         userStatus +'</div></div></div>'
-    //console.log("currentStatus", currentStatus)
+
     currentStatus === "online" ? $('.results').prepend(html) : $('.results').append(html);
     
   }
@@ -71,22 +80,19 @@ $(function () {
 });
 
   function events() {
+    var context;
     $('#online').on('click', function() {
       $(this).attr('id', 'onlineColor');
+      context = this;
       $('.offline').hide();
 
     });
 
     $('#all').on('click', function() {
-      $('#online').attr('id', 'online'); 
+      $(context).attr('id', 'online'); 
       $('.offline').show();  
   });
 
   }
 
 
-//ideas and things to add
-
-// 1)make toggle button work
-// 3)add footer
-// 4)add default image to inactive users
