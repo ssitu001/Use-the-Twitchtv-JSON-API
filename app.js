@@ -1,6 +1,6 @@
 $(function () {
   //console.log('ready');  
-  var streamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
+  var streamers = ["reckful", "eleaguetv", "ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404", "mr_coding", "codingpro"];
   
   (function fetchUsersData (arr) {
     arr.forEach(function(streamer) {
@@ -8,7 +8,7 @@ $(function () {
     });
   })(streamers);
   
-  //getData("comster404");
+  // getData("ESL_SC2");
   
  function getData(user, endpoint) {
    $.getJSON('https://api.twitch.tv/kraken/channels/' + user +'?callback=?', function(data) {
@@ -49,7 +49,7 @@ $(function () {
       userStatus = "Currently Offline";
       currentStatus = "offline";
     } else if (status) {
-      userStatus = "Currently streaming: " + data.status;
+      userStatus = data.game + ": " + data.status;
       currentStatus = "online";
     } else {
       userStatus = 'No longer active';
@@ -61,10 +61,10 @@ $(function () {
       userStatus = data.message.split(" ").slice(1).join(" ");
     }
     
-    var html = '<div class="eachResult"><img src="'+
+    var html = '<div class="'+currentStatus+'"><div class="eachResult ' + currentStatus +'"><img src="'+
         logo +'" + "height="35" width="35" class="logo""><a href="'+url+'" target="_blank"><span class="displayName">'+ 
         displayName +'</span></a><div class="status">'+
-        userStatus +'</div></div>'
+        userStatus +'</div></div></div>'
     //console.log("currentStatus", currentStatus)
     currentStatus === "online" ? $('.results').prepend(html) : $('.results').append(html);
     
@@ -72,7 +72,8 @@ $(function () {
 });
 
 //ideas and things to add
+  //add game x
 // 1)make toggle button work
-// 2)username in green when online
+// 2)username in green when onlinex
 // 3)add footer
 // 4)add default image to inactive users
